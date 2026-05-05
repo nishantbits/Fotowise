@@ -1,0 +1,48 @@
+# User data — never in Docker image
+data/
+library/
+clip_model_cache/
+
+# Dependencies — reinstalled inside container
+node_modules/
+client/node_modules/
+server/node_modules/
+*/node_modules/
+
+# Build outputs — rebuilt inside container
+dist/
+client/dist/
+server/dist/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Git
+.git/
+.gitignore
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Tests
+coverage/
+playwright-report/
+test-results/
+
+# Docs (not needed in image)
+docs/
+*.md
+!README.md

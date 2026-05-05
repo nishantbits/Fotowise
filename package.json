@@ -1,0 +1,15 @@
+{
+  "name": "fotowise-watcher",
+  "version": "1.0.0",
+  "description": "External file watcher agent for Fotowise",
+  "main": "watcher-agent.js",
+  "scripts": {
+    "watcher": "node watcher-agent.js",
+    "agent": "node watcher-agent.js"
+  },
+  "dependencies": {
+    "chokidar": "^3.6.0",
+    "form-data": "^4.0.0",
+    "node-fetch": "^2.7.0"
+  }
+}

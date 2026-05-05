@@ -1,0 +1,52 @@
+networks:
+  fotowise-net:
+    driver: bridge
+
+services:
+  clip-service:
+    build: ./clip-service
+    ports:
+      - "8001:8001"
+    volumes:
+      - clip_model_cache:/root/.cache/huggingface
+      # CRITICAL: mount the library so the Python service can read image files
+      # at the same absolute path that Node.js sends in embed/classify requests.
+      - ./library:/app/library:ro
+    networks:
+      - fotowise-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health')"]
+      interval: 30s
+      timeout: 15s
+      retries: 5
+      start_period: 120s
+
+  fotowise:
+    build: .
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - ./data:/app/data
+      - ./library:/app/library
+    networks:
+      - fotowise-net
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - LIBRARY_PATH=/app/library
+      - DB_PATH=/app/data/fotowise.db
+      - CLIP_SERVICE_URL=http://clip-service:8001
+    depends_on:
+      clip-service:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  clip_model_cache:

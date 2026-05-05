@@ -1,0 +1,91 @@
+# ── User Data (NEVER commit) ──────────────────────────────
+data/
+library/
+uploads/
+temp/
+tmp/
+thumbnails/
+
+# ── Database files ────────────────────────────────────────
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+
+# ── Environment files ─────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+client/.env
+server/.env
+*.env.bak
+*.env.tmp
+
+# ── Dependencies ──────────────────────────────────────────
+node_modules/
+client/node_modules/
+server/node_modules/
+clip-service/node_modules/
+
+# ── Build outputs ─────────────────────────────────────────
+dist/
+client/dist/
+server/dist/
+build/
+out/
+*.tsbuildinfo
+
+# ── Logs ──────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ── OS files ──────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.Spotlight-V100
+.Trashes
+
+# ── Editor & Tooling ──────────────────────────────────────
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.aider*
+.gemini/
+.code-review-graph/
+.planning/
+.cursor/
+
+# ── Testing ───────────────────────────────────────────────
+coverage/
+playwright-report/
+test-results/
+
+# ── Docker ────────────────────────────────────────────────
+docker-compose.override.yml
+docker-compose.local.yml
+
+# ── Misc ──────────────────────────────────────────────────
+.cache/
+*.tgz
+clip_model_cache/
+.eslintcache
+.stylelintcache
+
+# ── Final Audit Rules ─────────────────────────────────────
+.aider*
+.code-review-graph/
+.gemini/
+.planning/
+data/
+
