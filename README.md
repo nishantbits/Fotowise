@@ -41,26 +41,47 @@ Follow these steps to get your local instance of Fotowise up and running.
 
 ### Setup
 
-1.  **Configure Environment**
-    Copy the example environment file and adjust any settings if needed.
+1.  **Clone the Repository**
+    Download the code to your local machine and enter the directory.
+    ```bash
+    git clone [https://github.com/nishantbits/Fotowise.git](https://github.com/nishantbits/Fotowise.git)
+    cd Fotowise
+    ```
+
+2.  **Configure Environment**
+    Copy the example environment file and define where your photos live.
     ```bash
     cp .env.example .env
     ```
+    *(Note: Open the `.env` file and change `LIBRARY_PATH` to the absolute path of your photo folder. Example: `LIBRARY_PATH="C:\Users\Name\Pictures"`)*
 
-2.  **Launch the Services**
-    Start the containerized backend and AI engine.
+3.  **Launch the Services**
+    Start the containerized database, AI engine, and frontend UI.
     ```bash
-    docker compose up -d --build
+    docker compose up -d
     ```
+    *(Note: The first run will download the local AI models. This may take a few minutes depending on your internet speed.)*
 
-3.  **Start the Local Watcher**
-    In a new terminal window, start the host-side agent to begin monitoring your folders.
+4.  **Start the Watcher Agent**
+    Install the required dependencies and start the file watcher to automatically detect new photos.
     ```bash
+    npm install
     node watcher-agent.js
     ```
 
-4.  **Access the App**
-    Open your browser and navigate to `http://localhost:3000`. Follow the onboarding to select your first photo directory!
+5.  **Access the Application**
+    Your private photo gallery is now live! Open your web browser and navigate to: **http://localhost:3000**
+
+---
+
+## 🛠️ Troubleshooting
+
+**Windows Users: "npm install" Error**
+If PowerShell blocks the `npm install` command with a "running scripts is disabled" security error, you need to update your execution policy. 
+Open Windows PowerShell as Administrator and run:
+```bash
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
 ---
 
